@@ -1,5 +1,8 @@
+import java.util.Scanner;
 public class Demo{
 	public static void main(String args[]){
-		System.out.println("Anubhav Singh");
+		Scanner sc = new Scanner(System.in);
+		int a=sc.nextInt();
+		System.out.println("You just entered : "+a);
 	}
 }
