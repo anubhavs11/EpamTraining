@@ -9,8 +9,8 @@ public class QueueUsingTwoStacks {
     public static void main(String[] args) {  
         
         //Creating two Stacks
-        Stack<Integer> s1 = new Stack<Integer>();
-        Stack<Integer> s2 = new Stack<Integer>();
+        arrayStack s1 = new arrayStack();
+        arrayStack s2 = new arrayStack();
         
         //Creating object of Scanner Class
         Scanner sc = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class QueueUsingTwoStacks {
                         s1.pop();
                     }
                 }
-                //deleting first element of stack2 i.e. front of queue
+                //poping first element of stack2 i.e. front of queue
                 s2.pop();
             }
             //Printing Last element
@@ -56,5 +56,57 @@ public class QueueUsingTwoStacks {
             }
         }
     }
+    
 }
 
+class arrayStack{
+
+    int arr[];
+    int top, size, len;
+
+    /*  Constructor for arrayStack */
+
+    public arrayStack(){
+        size = 100000; // array max size
+        len = 0;
+        arr = new int[size];
+        top = -1;
+    }
+
+    /*  Function to check if stack is empty */
+    public boolean empty(){
+
+        return top == -1;
+
+    }
+
+    /*  Function to check the top element of the stack */
+    public int peek(){
+
+        return arr[top];
+
+    }
+
+    /*  Function to add an element to the stack */
+    public void push(int i)
+
+    {
+
+        if(top + 1 < size )
+
+            arr[++top] = i;
+
+        len++ ;
+
+    }
+
+    /*  Function to delete an element from the stack */
+    public int pop(){
+
+        len-- ;
+
+        return arr[top--]; 
+
+    }    
+
+}

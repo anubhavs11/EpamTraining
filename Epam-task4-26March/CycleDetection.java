@@ -61,36 +61,88 @@ public class CycleDetection {
      * }
      *
      */
-    static boolean hasCycle(SinglyLinkedListNode head) {
-        //ArrayList of Node type
-        ArrayList<SinglyLinkedListNode> list = new ArrayList<SinglyLinkedListNode>();
+    import java.io.*;
+    import java.math.*;
+    import java.security.*;
+    import java.text.*;
+    import java.util.*;
+    import java.util.concurrent.*;
+    import java.util.regex.*;
 
-        //Storing head pointer too a new variable
-        SinglyLinkedListNode h = head;
+    public class Solution {
 
-        //iterating for each node
-        while(h!=null){
+        static class SinglyLinkedListNode {
+            public int data;
+            public SinglyLinkedListNode next;
 
-            //comparing current node with all previously traversed nodes
-            for(int i=0;i<list.size();i++){
+            public SinglyLinkedListNode(int nodeData) {
+                this.data = nodeData;
+                this.next = null;
+            }
+        }
 
-                //if node already traversed
-                if(list.get(i) == h){
+        static class SinglyLinkedList {
+            public SinglyLinkedListNode head;
+            public SinglyLinkedListNode tail;
 
-                    // Cycle found
+            public SinglyLinkedList() {
+                this.head = null;
+                this.tail = null;
+            }
+
+            public void insertNode(int nodeData) {
+                SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
+
+                if (this.head == null) {
+                    this.head = node;
+                } else {
+                    this.tail.next = node;
+                }
+
+                this.tail = node;
+            }
+        }
+
+        public static void printSinglyLinkedList(SinglyLinkedListNode node, String sep, BufferedWriter bufferedWriter) throws IOException {
+            while (node != null) {
+                bufferedWriter.write(String.valueOf(node.data));
+
+                node = node.next;
+
+                if (node != null) {
+                    bufferedWriter.write(sep);
+                }
+            }
+        }
+        static boolean hasCycle(SinglyLinkedListNode head) {
+
+            //Creating 2 pointers which are pointing to head
+            SinglyLinkedListNode firstPointer = head;
+            SinglyLinkedListNode SecondPointer = head;
+
+            //iterating unless null pointer
+            while(firstPointer!=null && firstPointer.next != null && SecondPointer != null){
+
+                //increment first pointer unless it points to null
+                if(firstPointer!=null && firstPointer.next != null){
+                    firstPointer = firstPointer.next.next;
+                }
+
+                //increment second pointer unless it points to null
+                if(SecondPointer != null){
+                    SecondPointer = SecondPointer.next;
+                }
+
+                //Cycle if both pointers pointing to same node
+                if(firstPointer == SecondPointer){
                     return true;
                 }
             }
-
-            //Adding current node to the ArrayList
-            list.add(h);
-
-            //updating current node
-            h = h.next;
-        }
-        //No Cycle Found i.e. returns false
-        return false;
+            //No Cycle Found i.e. returns false
+            return false;
     }
+
+        private static final Scanner scanner = new Scanner(System.in);
 
     private static final Scanner scanner = new Scanner(System.in);
 
