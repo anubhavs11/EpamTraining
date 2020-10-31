@@ -1,75 +1,24 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
+package datastructures;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+public class sparsearray{
 
-public class SparseArray {
+    public static void main(String args[]){
 
-    // Complete the matchingStrings function below.
-static int[] matchingStrings(String[] strings, String[] queries) {
-    
-    //Creating result array
-    int[] result = new int[queries.length];
-
-    //Iterating for each queries
-    for(int i=0;i<queries.length;i++){
-        //Initiazing frequency of string as Zero
-        result[i] = 0; 
-
-        //Matching with all the strings
-        for(int j=0;j<strings.length;j++){
-            //If Match Found increment by 1
-            if(queries[i].equals(strings[j])){
-                result[i]+=1;
+    ArrayList<String> a = new ArrayList<String>();
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        for(int i = 0; i < n; i++) {
+            a.add(scan.next());
+        }
+        int q = scan.nextInt();
+        for(int i = 0; i < q; i++) {
+            int count = 0;
+            String s = scan.next();
+            for(String str : a) {
+                if(str.equals(s))
+                    count++;
             }
+            System.out.println(count);
         }
-    }
-    //return result array
-    return result;
-}
-
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
-        int stringsCount = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        String[] strings = new String[stringsCount];
-
-        for (int i = 0; i < stringsCount; i++) {
-            String stringsItem = scanner.nextLine();
-            strings[i] = stringsItem;
-        }
-
-        int queriesCount = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        String[] queries = new String[queriesCount];
-
-        for (int i = 0; i < queriesCount; i++) {
-            String queriesItem = scanner.nextLine();
-            queries[i] = queriesItem;
-        }
-
-        int[] res = matchingStrings(strings, queries);
-
-        for (int i = 0; i < res.length; i++) {
-            bufferedWriter.write(String.valueOf(res[i]));
-
-            if (i != res.length - 1) {
-                bufferedWriter.write("\n");
-            }
-        }
-
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
-
-        scanner.close();
     }
 }
